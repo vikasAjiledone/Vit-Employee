@@ -1,0 +1,49 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+  font-family: 'Roboto Slab', serif;}
+
+.sub-header {
+  width: 100%;
+  background: linear-gradient(
+    130deg,
+    rgb(36 85 163) 23%,
+    rgba(52, 151, 219, 1) 52%,
+    rgba(52, 142, 219, 1) 58%,
+    rgba(52, 131, 219, 1) 65%,
+    rgba(40, 116, 166, 1) 74%
+  );
+}
+
+.sub-footer{
+  width: 100%;
+  background: linear-gradient(
+    130deg,
+    rgb(36 85 163) 23%,
+    rgba(52, 151, 219, 1) 52%,
+    rgba(52, 142, 219, 1) 58%,
+    rgba(52, 131, 219, 1) 65%,
+    rgba(40, 116, 166, 1) 74%
+  );
+  text-align: center;
+}
+
+.middle{
+  height: 88.9vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.Login-card{
+  background-color: yellow;
+  box-shadow: 5px 5px;
+
+}
+
+.basic-card{
+  width: 40%;
+}
