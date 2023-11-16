@@ -11,9 +11,9 @@ const SignUp = () => {
           sx={{ display: "flex", alignItems: "center", color: "#fff" }}
         >
           <Typography component="h1" variant="h5" sx={{ padding: "10px" }}>
-            VIT
+            Construction Management  System
           </Typography>
-          (vellore Compus)
+          
         </Typography>
       </div>
       <div className="middle">
@@ -21,7 +21,7 @@ const SignUp = () => {
       </div>
       <div className="sub-footer">
         <Typography component="p" variant="p" sx={{ color: "white" }}>
-          Copyright © 2023 Software Development Cell, VIT, Vellore-632 014.
+          Information Management Project Lifecycle.
         </Typography>
       </div>
     </div>

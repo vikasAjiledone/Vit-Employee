@@ -8,6 +8,7 @@ import TextField from "@mui/material/TextField";
 import PersonIcon from "@mui/icons-material/Person";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import {
   Alert,
   CardActions,
@@ -17,13 +18,26 @@ import {
 } from "@mui/material";
 
 const BasicCard = () => {
+  const [passwordType, setPasswordType] = useState("password");
+  const [passwordInput, setPasswordInput] = useState("");
+  const handlePasswordChange = (evnt) => {
+    setPasswordInput(evnt.target.value);
+  };
+  const togglePassword = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+      return;
+    }
+    setPasswordType("password");
+  };
+
   const randomString = Math.random().toString(36).slice(8);
   const [captcha, setCaptcha] = useState(randomString);
 
   const refreshString = () => {
     // setText("");
     setCaptcha(Math.random().toString(36).slice(8));
-    console.log(Math.random().toString(36).slice(8))
+    console.log(Math.random().toString(36).slice(8));
   };
 
   return (
@@ -37,7 +51,7 @@ const BasicCard = () => {
           sx={{
             borderWidth: "3px 0px 0px 0px",
             borderStyle: "solid",
-            borderColor: "rgb(92, 172, 218)",
+            borderColor: "rgb(52, 219, 116) 52%",
           }}
         ></Typography>
         <Typography
@@ -45,7 +59,7 @@ const BasicCard = () => {
           variant="h5"
           sx={{ backgroundColor: "whitesmoke", py: 1, px: 2 }}
         >
-          VTOP Login
+           Login
         </Typography>
         <Typography sx={{ p: 3 }}>
           <Box
@@ -89,7 +103,9 @@ const BasicCard = () => {
               placeholder="Password"
               variant="outlined"
               size="small"
-              type="password"
+              type={passwordType}
+              onChange={handlePasswordChange}
+              value={passwordInput}
               sx={{ width: "100%" }}
             />
             <Typography
@@ -98,16 +114,25 @@ const BasicCard = () => {
                 p: 1,
               }}
             >
-              <VisibilityIcon
-                sx={{ color: "red", fontSize: "17px", cursor: "pointer" }}
-              />
+              <Typography className="" onClick={togglePassword}>
+                {passwordType === "password" ? (
+                  <VisibilityOffIcon
+                    sx={{ color: "red", fontSize: "17px", cursor: "pointer" }}
+                  />
+                ) : (
+                  <VisibilityIcon
+                    sx={{ color: "red", fontSize: "17px", cursor: "pointer" }}
+                  />
+                )}
+              </Typography>
             </Typography>
           </Box>
-          <CardActions sx={{display:"flex", justifyContent:"center"}}>
+          <CardActions sx={{ display: "flex", justifyContent: "center" }}>
             <div className="h3">{captcha}</div>
             <Button
               startIcon={<RefreshIcon />}
               onClick={() => refreshString()}
+              className="chaptcha-btn"
             ></Button>
           </CardActions>
           <Box

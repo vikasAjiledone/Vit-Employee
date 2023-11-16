@@ -8,11 +8,11 @@
   width: 100%;
   background: linear-gradient(
     130deg,
-    rgb(36 85 163) 23%,
-    rgba(52, 151, 219, 1) 52%,
-    rgba(52, 142, 219, 1) 58%,
-    rgba(52, 131, 219, 1) 65%,
-    rgba(40, 116, 166, 1) 74%
+    rgb(36, 163, 68) 23%,
+    rgb(52, 219, 116) 52%,
+    rgb(99, 219, 52) 58%,
+    rgb(66, 219, 52) 65%,
+    rgb(40, 166, 93) 74%
   );
 }
 
@@ -20,13 +20,24 @@
   width: 100%;
   background: linear-gradient(
     130deg,
-    rgb(36 85 163) 23%,
-    rgba(52, 151, 219, 1) 52%,
-    rgba(52, 142, 219, 1) 58%,
-    rgba(52, 131, 219, 1) 65%,
-    rgba(40, 116, 166, 1) 74%
+    rgb(36, 163, 68) 23%,
+    rgb(52, 219, 116) 52%,
+    rgb(99, 219, 52) 58%,
+    rgb(66, 219, 52) 65%,
+    rgb(40, 166, 93) 74%
   );
   text-align: center;
+}
+
+.dashboard-nav{
+  background: linear-gradient(
+    130deg,
+    rgb(36, 163, 68) 23%,
+    rgb(52, 219, 116) 52%,
+    rgb(99, 219, 52) 58%,
+    rgb(66, 219, 52) 65%,
+    rgb(40, 166, 93) 74%
+  );
 }
 
 .middle{
@@ -37,13 +48,28 @@
   justify-content: center;
 }
 
-
 .Login-card{
   background-color: yellow;
   box-shadow: 5px 5px;
-
 }
 
 .basic-card{
   width: 40%;
+}
+
+.h3 {
+  color: #fff;
+  text-decoration: line-through;
+  user-select: none;
+  background-color: rgba(182, 181, 181, 0.808);
+  border-radius: 5px;
+  font-size: 22px;
+  margin-bottom: auto;
+  color: black;
+  font-weight: 900;
+  padding: 5px 30PX;
+}
+
+.chaptcha-btn{
+  color: green;
 }
