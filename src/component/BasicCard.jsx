@@ -127,7 +127,7 @@ const BasicCard = () => {
               </Typography>
             </Typography>
           </Box>
-          <CardActions sx={{ display: "flex", justifyContent: "center" }}>
+          {/* <CardActions sx={{ display: "flex", justifyContent: "center" }}>
             <div className="h3">{captcha}</div>
             <Button
               startIcon={<RefreshIcon />}
@@ -148,11 +148,11 @@ const BasicCard = () => {
               size="small"
               sx={{ width: "100%" }}
             />
-          </Box>
+          </Box> */}
           <Typography
             component="h2"
             variant="h5"
-            sx={{ py: 1, px: 2, display: "flex", justifyContent: "end" }}
+            sx={{ py: 1, px: 2, display: "flex", justifyContent: "center" }}
           >
             <Button variant="contained">Submit</Button>
           </Typography>
