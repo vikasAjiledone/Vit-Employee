@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react'
+import Sidebar from '../../pages/Sidebar'
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Sidebar from "../Sidebar";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -13,16 +13,20 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-const StandardForm = () => {
+
+const ProjectEstablishmentView = () => {
   return (
     <Box sx={{ display: "flex"}}>
       <Sidebar />
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Typography>Standard Form</Typography>
+        <Typography variant='h6'>Project Establishment Overview</Typography>
+      </Box>
+      <Box>
+      <Typography variant='h6'>Project ID</Typography>
       </Box>
     </Box>
-  );
+  )
 }
 
-export default StandardForm
+export default ProjectEstablishmentView

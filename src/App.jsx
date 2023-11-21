@@ -20,6 +20,7 @@ import SiteManagementPlan from "./pages/Construction/SiteManagementPlan";
 import ProjectCompletionDocumentation from "./pages/postconstruction/ProjectCompletionDocumentation";
 import AssetsManagement from "./pages/operations/AssetsManagement";
 import MaintainanceRecord from "./pages/operations/MaintainanceRecord";
+import ProjectEstablishmentView from "./component/ProjectEstablishment/ProjectEstablishmentView.jsx";
 
 
 function App() {
@@ -99,6 +100,10 @@ function App() {
         <Route
           path="/MaintainanceRecord"
           element={<MaintainanceRecord />}
+        />
+        <Route
+          path="/ProjectEstablishmentView"
+          element={<ProjectEstablishmentView />}
         />
       </Routes>
     </>

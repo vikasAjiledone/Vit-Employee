@@ -7,15 +7,15 @@ import Textarea from "@mui/joy/Textarea";
 import TextField from "@mui/material/TextField";
 import PersonIcon from "@mui/icons-material/Person";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import RefreshIcon from "@mui/icons-material/Refresh";
+// import RefreshIcon from "@mui/icons-material/Refresh";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import {
-  Alert,
-  CardActions,
-  CardContent,
-  CardHeader,
-  Divider,
-} from "@mui/material";
+// import {
+//   Alert,
+//   CardActions,
+//   CardContent,
+//   CardHeader,
+//   Divider,
+// } from "@mui/material";
 
 const BasicCard = () => {
   const [passwordType, setPasswordType] = useState("password");
@@ -31,14 +31,14 @@ const BasicCard = () => {
     setPasswordType("password");
   };
 
-  const randomString = Math.random().toString(36).slice(8);
-  const [captcha, setCaptcha] = useState(randomString);
+  // const randomString = Math.random().toString(36).slice(8);
+  // const [captcha, setCaptcha] = useState(randomString);
 
-  const refreshString = () => {
-    // setText("");
-    setCaptcha(Math.random().toString(36).slice(8));
-    console.log(Math.random().toString(36).slice(8));
-  };
+  // const refreshString = () => {
+  //   // setText("");
+  //   setCaptcha(Math.random().toString(36).slice(8));
+  //   console.log(Math.random().toString(36).slice(8));
+  // };
 
   return (
     <div className="basic-card">

@@ -3,6 +3,8 @@ import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Sidebar from "../Sidebar";
+import ProjectEstablishmentForm from "../../component/ProjectEstablishment/ProjectEstablishmentForm";
+import ProjectEstablishmentTable from "../../component/ProjectEstablishment/ProjectEstablishmentTable";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -15,14 +17,20 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 const ProjectEstablisment = () => {
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex"}}>
       <Sidebar />
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Typography>Project Establisment</Typography>
+        <Typography variant="h5">Project Establisment</Typography>
+        <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
+          <ProjectEstablishmentForm />
+        </Box>
+        <Box>
+          <ProjectEstablishmentTable />
+        </Box>
       </Box>
     </Box>
   );
-}
+};
 
-export default ProjectEstablisment
+export default ProjectEstablisment;
