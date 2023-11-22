@@ -3,6 +3,7 @@ import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Sidebar from "../Sidebar";
+import TechnicalSpecificationForm from '../../component/technicalSpecificationData/TechicalSpecificationForm'
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -19,7 +20,10 @@ const TechnicalSpecification = () => {
       <Sidebar />
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Typography>Technical Specification</Typography>
+        <Typography variant="h6">Technical Specification</Typography>
+        <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
+          <TechnicalSpecificationForm/>
+        </Box>
       </Box>
     </Box>
   );

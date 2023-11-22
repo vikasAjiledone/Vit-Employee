@@ -3,6 +3,7 @@ import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Sidebar from "../Sidebar";
+import StandardFormPopup from "../../component/standardFormPopup/StandardFormPopup";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -15,14 +16,17 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 const StandardForm = () => {
   return (
-    <Box sx={{ display: "flex"}}>
+    <Box sx={{ display: "flex" }}>
       <Sidebar />
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Typography>Standard Form</Typography>
+        <Typography variant="h6">Standard Form</Typography>
+        <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
+          <StandardFormPopup/>
+        </Box>
       </Box>
     </Box>
   );
-}
+};
 
-export default StandardForm
+export default StandardForm;

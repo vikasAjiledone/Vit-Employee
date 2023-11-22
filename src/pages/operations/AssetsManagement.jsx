@@ -3,6 +3,7 @@ import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Sidebar from "../Sidebar";
+import AssestManagementForm from "../../component/assestManagement/AssestManagementForm";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -19,7 +20,10 @@ const AssetsManagement = () => {
       <Sidebar />
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Typography>Assets Management</Typography>
+        <Typography variant="h6">Assets Management</Typography>
+        <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
+            <AssestManagementForm/>
+        </Box>
       </Box>
     </Box>
   );

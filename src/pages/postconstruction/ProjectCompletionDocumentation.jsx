@@ -3,6 +3,7 @@ import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Sidebar from "../Sidebar";
+import PostConstructionForm from "../../component/postConstructionData/PostConstructionForm";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -19,7 +20,10 @@ const ProjectCompletionDocumentation = () => {
       <Sidebar />
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Typography>Project Completion Documentation</Typography>
+        <Typography variant="h6">Project Completion Documentation</Typography>
+        <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
+          <PostConstructionForm/>
+        </Box>
       </Box>
     </Box>
   );
