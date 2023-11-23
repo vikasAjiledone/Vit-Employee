@@ -29,7 +29,7 @@ const ProposalForm = () => {
     <div>
       <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
         <Typography variant="h6">
-          Create a form for Standard Form & Guidelines :-
+          Create a form for Proposal :-
         </Typography>
         <Box>
           <Button variant="contained" onClick={handleClickOpen} sx={{ ml: 2 }}>
