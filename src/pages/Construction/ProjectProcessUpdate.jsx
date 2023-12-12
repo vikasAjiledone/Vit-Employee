@@ -3,6 +3,7 @@ import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Sidebar from "../Sidebar";
+import ProductProcessUpdateForm from "../../component/productprocessupdate/ProductProcessUpdateForm";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -13,18 +14,19 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-
 const ProjectProcessUpdate = () => {
   return (
     <Box sx={{ display: "flex" }}>
       <Sidebar />
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Typography>Project Process Update</Typography>
+        <Typography variant="h6">Project Process Update</Typography>
+        <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
+          <ProductProcessUpdateForm/> 
+        </Box>
       </Box>
     </Box>
   );
-}
+};
 
-
-export default ProjectProcessUpdate
+export default ProjectProcessUpdate;

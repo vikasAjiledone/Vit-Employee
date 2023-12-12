@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Sidebar from "../Sidebar";
 import MachineryProcurementForm from '../../component/machineryProcurementData/machineryProcurementForm'
+import MachineryProcurementTable from "../../component/machineryProcurementData/MachineryProcurementTable";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -23,6 +24,9 @@ const MachineryProcurement = () => {
         <Typography variant="h6">Machinery Procurement</Typography>
         <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
           <MachineryProcurementForm/>
+        </Box>
+        <Box>
+          <MachineryProcurementTable/>
         </Box>
       </Box>
     </Box>

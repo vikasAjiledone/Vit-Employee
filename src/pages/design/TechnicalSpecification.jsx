@@ -24,6 +24,7 @@ const TechnicalSpecification = () => {
         <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
           <TechnicalSpecificationForm/>
         </Box>
+        
       </Box>
     </Box>
   );

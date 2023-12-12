@@ -73,3 +73,13 @@
 .chaptcha-btn{
   color: green;
 }
+
+.pdf-div{
+  padding: 50px;
+  background-color: #dedede;
+  margin-top: 50px;
+}
+
+canvas.react-pdf__Page__canvas {
+  margin-bottom: 50px;
+}

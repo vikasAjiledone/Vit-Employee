@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Sidebar from "../Sidebar";
 import SechemeticDesignForm from "../../component/schemeticDesignData/SechemeticDesignForm";
+import SchemeticDesignTable from "../../component/schemeticDesignData/SchemeticDesignTable";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -23,6 +24,9 @@ const SchemeticDesign = () => {
         <Typography variant="h6">Schemetic Design</Typography>
         <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
           <SechemeticDesignForm/>
+        </Box>
+        <Box>
+          <SchemeticDesignTable/>
         </Box>
       </Box>
     </Box>

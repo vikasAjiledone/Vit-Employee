@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Sidebar from "../Sidebar";
 import CostEstimateForm from "../../component/costEstimateData/CostEstimateForm";
+import CostEstimateTable from "../../component/costEstimateData/CostEstimateTable";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -23,6 +24,9 @@ const CostEstimation = () => {
         <Typography variant="h6">Cost Estimation</Typography>
         <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
           <CostEstimateForm/>
+        </Box>
+        <Box>
+          <CostEstimateTable/>
         </Box>
       </Box>
     </Box>

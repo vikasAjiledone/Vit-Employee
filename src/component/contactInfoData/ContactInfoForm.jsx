@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -11,19 +11,65 @@ import DialogTitle from "@mui/material/DialogTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import FormControl from "@mui/material/FormControl";
 import { Textarea } from "@mui/joy";
+import Select from "@mui/material/Select";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
 
 const ContactInfoForm = () => {
-    const [open, setOpen] = React.useState(false);
-    const theme = useTheme();
-    const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
-  
-    const handleClickOpen = () => {
-      setOpen(true);
-    };
-  
-    const handleClose = () => {
-      setOpen(false);
-    };
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [Organization, setOrganization] = useState("");
+  const [Address, setAddress] = useState("");
+  const [Contact, setContact] = useState("");
+  const [Email, setEmail] = useState("");
+  const [Fax, setFax] = useState("");
+  const [Contract, setContract] = useState("");
+  const [Key, setKey] = useState("");
+  const [Award, setAward] = useState("");
+  const [SubContractor, setSubContractor] = useState("");
+  const [Construction, setConstruction] = useState("");
+
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleSubmit = (e) => {
+    console.log("vikas")
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("Name", name);
+    formData.append("Organization", Organization);
+    formData.append("Address", Address);
+    formData.append("Contact", Contact);
+    formData.append("Email", Email);
+    formData.append("Fax", Fax);
+    formData.append("Contract", Contract);
+    formData.append("Key", Key);
+    formData.append("Award", Award);
+    formData.append("SubContractor", SubContractor);
+    formData.append("Construction", Construction);
+    console.log(
+      name,
+      Organization,
+      Address,
+      Contact,
+      Email,
+      Fax,
+      Contract,
+      Key,
+      Award,
+      SubContractor,
+      Construction
+    );
+  };
+
   return (
     <div>
       <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
@@ -41,15 +87,29 @@ const ContactInfoForm = () => {
             aria-labelledby="responsive-dialog-title"
           >
             <Box>
-              <FormControl>
-                <DialogTitle id="responsive-dialog-title">
-                  {"Contract Information Form"}
-                </DialogTitle>
-               
+              <form onSubmit={handleSubmit}>
                 <Box sx={{ px: 0 }}>
-                <DialogTitle id="responsive-dialog-title">
-                  {"Contractor Information Form"}
-                </DialogTitle>
+                  <DialogTitle id="responsive-dialog-title">
+                    {"Contractor Information Form"}
+                  </DialogTitle>
+                  <Box sx={{ py: 1, px: 7 }}>
+                  <InputLabel id="simple-select-label">Project ID</InputLabel>
+                  <Select
+                    sx={{
+                      // marginTop: 35,
+                      width: "100%",
+                      height: 50,
+                    }}
+                  >
+                    <MenuItem value={1} selected>
+                      Red
+                    </MenuItem>
+                    <MenuItem value={2}>Black</MenuItem>
+                    <MenuItem value={3}>Blue</MenuItem>
+                    <MenuItem value={4}>Green</MenuItem>
+                    <MenuItem value={5}>Yellow</MenuItem>
+                  </Select>
+                </Box>
                   <Box
                     sx={{
                       py: 1,
@@ -67,6 +127,7 @@ const ContactInfoForm = () => {
                       variant="outlined"
                       size="small"
                       sx={{ width: "100%" }}
+                      onChange={(e) => setName(e.target.value)}
                     />
                   </Box>
                   <Box
@@ -86,6 +147,7 @@ const ContactInfoForm = () => {
                       variant="outlined"
                       size="small"
                       sx={{ width: "100%" }}
+                      onChange={(e) => setOrganization(e.target.value)}
                     />
                   </Box>
                   <Box
@@ -105,6 +167,7 @@ const ContactInfoForm = () => {
                       variant="outlined"
                       size="small"
                       sx={{ width: "100%" }}
+                      onChange={(e) => setAddress(e.target.value)}
                     />
                   </Box>
                   <Box
@@ -124,6 +187,7 @@ const ContactInfoForm = () => {
                       variant="outlined"
                       size="small"
                       sx={{ width: "100%" }}
+                      onChange={(e) => setContact(e.target.value)}
                     />
                   </Box>
                   <Box
@@ -144,6 +208,7 @@ const ContactInfoForm = () => {
                       size="small"
                       type="email"
                       sx={{ width: "100%" }}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </Box>
                   <Box
@@ -163,10 +228,11 @@ const ContactInfoForm = () => {
                       variant="outlined"
                       size="small"
                       sx={{ width: "100%" }}
+                      onChange={(e) => setFax(e.target.value)}
                     />
                   </Box>
                 </Box>
-            
+
                 <Box sx={{ px: 0 }}>
                   <Box
                     sx={{
@@ -185,6 +251,7 @@ const ContactInfoForm = () => {
                       variant="outlined"
                       size="small"
                       sx={{ width: "100%" }}
+                      onChange={(e) => setContract(e.target.value)}
                     />
                   </Box>
                   <Box
@@ -195,7 +262,7 @@ const ContactInfoForm = () => {
                   >
                     <Box>
                       <Typography variant="subtitle2" component="p">
-                      Key dates and Contact period
+                        Key dates and Contact period
                       </Typography>
                     </Box>
                     <TextField
@@ -204,6 +271,7 @@ const ContactInfoForm = () => {
                       variant="outlined"
                       size="small"
                       sx={{ width: "100%" }}
+                      onChange={(e) => setKey(e.target.value)}
                     />
                   </Box>
                   <Box
@@ -214,7 +282,7 @@ const ContactInfoForm = () => {
                   >
                     <Box>
                       <Typography variant="subtitle2" component="p">
-                      Contract Award Date
+                        Contract Award Date
                       </Typography>
                     </Box>
                     <TextField
@@ -223,6 +291,7 @@ const ContactInfoForm = () => {
                       variant="outlined"
                       size="small"
                       sx={{ width: "100%" }}
+                      onChange={(e) => setAward(e.target.value)}
                     />
                   </Box>
                   <Box
@@ -233,15 +302,16 @@ const ContactInfoForm = () => {
                   >
                     <Box>
                       <Typography variant="subtitle2" component="p">
-                      Sub-Contractor Detai
+                        Sub-Contractor Detail
                       </Typography>
                     </Box>
                     <TextField
                       name="Outlined"
-                      placeholder="Sub-Contractor Detai"
+                      placeholder="Sub-Contractor Detail"
                       variant="outlined"
                       size="small"
                       sx={{ width: "100%" }}
+                      onChange={(e) => setSubContractor(e.target.value)}
                     />
                   </Box>
                   <Box
@@ -252,7 +322,7 @@ const ContactInfoForm = () => {
                   >
                     <Box>
                       <Typography variant="subtitle2" component="p">
-                      Construction Contract Agreement 
+                        Construction Contract Agreement
                       </Typography>
                     </Box>
                     <TextField
@@ -262,26 +332,26 @@ const ContactInfoForm = () => {
                       size="small"
                       type="file"
                       sx={{ width: "100%" }}
+                      onChange={(e) => setConstruction(e.target.files[0])}
                     />
                   </Box>
-                  
                 </Box>
-              
+
                 <DialogActions>
                   {/* <Button autoFocus onClick={handleClose}>
                       Disagree
                     </Button> */}
-                  <Button onClick={handleClose} variant="contained">
+                  <Button onClick={handleClose} variant="contained" type="submit">
                     Submit
                   </Button>
                 </DialogActions>
-              </FormControl>
+              </form>
             </Box>
           </Dialog>
         </Box>
       </Box>
     </div>
-  )
-}
+  );
+};
 
-export default ContactInfoForm
+export default ContactInfoForm;

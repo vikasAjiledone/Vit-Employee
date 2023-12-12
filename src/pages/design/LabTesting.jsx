@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Sidebar from "../Sidebar";
 import LabTextingForm from "../../component/labTesting/LabTextingForm";
+import LabTestingTable from "../../component/labTesting/LabTestingTable";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -23,6 +24,9 @@ const LabTesting = () => {
         <Typography variant="h6">Lab Testing</Typography>
         <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
           <LabTextingForm/>
+        </Box>
+        <Box>
+          <LabTestingTable/>
         </Box>
       </Box>
     </Box>

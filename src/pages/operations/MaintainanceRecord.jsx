@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Sidebar from "../Sidebar";
 import MaintainanceRecordForm from "../../component/maintainanceRecordData/MaintainanceRecordForm";
+import MaintainanceRecordTable from "../../component/maintainanceRecordData/MaintainanceRecordTable";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -23,6 +24,9 @@ const MaintainanceRecord = () => {
         <Typography variant="h6">Maintainance Record</Typography>
         <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
           <MaintainanceRecordForm/>
+        </Box>
+        <Box>
+          <MaintainanceRecordTable/>
         </Box>
       </Box>
     </Box>

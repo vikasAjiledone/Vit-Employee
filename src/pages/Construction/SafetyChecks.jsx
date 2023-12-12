@@ -3,26 +3,33 @@ import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Sidebar from "../Sidebar";
+import SafetyChecksForm from "../../component/safetychecks/SafetyChecksForm";
+import SafetyCheckTable from "../../component/safetychecks/SafetyCheckTable";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "flex-end",
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
 
-const ContractDetails = () => {
+const SafetyChecks = () => {
   return (
     <Box sx={{ display: "flex" }}>
       <Sidebar />
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Typography>Contract Details</Typography>
+        <Typography variant="h6">Safety Standard</Typography>
+        <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
+          <SafetyChecksForm/>
+        </Box>
+        <Box>
+          <SafetyCheckTable/>
+        </Box>
       </Box>
     </Box>
-  );
+  )
 }
 
-export default ContractDetails
+export default SafetyChecks

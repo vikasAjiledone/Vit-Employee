@@ -50,14 +50,7 @@ const closedMixin = (theme) => ({
   },
 });
 
-// const DrawerHeader = styled("div")(({ theme }) => ({
-//   display: "flex",
-//   alignItems: "center",
-//   justifyContent: "flex-end",
-//   padding: theme.spacing(0, 1),
-//   // necessary for content to be below app bar
-//   ...theme.mixins.toolbar,
-// }));
+
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -178,7 +171,7 @@ const Sidebar = () => {
           </IconButton>
         </Toolbar>
         <Divider />
-        <List>
+        {/* <List>
           <ListItem
             disablePadding
             sx={{ display: "block" }}
@@ -208,7 +201,7 @@ const Sidebar = () => {
               />
             </ListItemButton>
           </ListItem>
-        </List>
+        </List> */}
         {/* <Divider /> */}
         <List disablePadding>
           <ListItem
@@ -484,35 +477,7 @@ const Sidebar = () => {
             </ListItemButton>
           </ListItem>
           <Collapse in={isPreConst} timeout="auto">
-            <ListItem
-              disablePadding
-              sx={{ display: "block" }}
-              onClick={() => {
-                navigate("/ContractDetails");
-              }}
-            >
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
-                >
-                  {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                </ListItemIcon>
-                <ListItemText
-                  primary="Contract Details"
-                  sx={{ opacity: open ? 1 : 0, fontSize: "15px" }}
-                />
-              </ListItemButton>
-            </ListItem>
+           
             <ListItem
               disablePadding
               sx={{ display: "block" }}
@@ -692,35 +657,7 @@ const Sidebar = () => {
             </ListItemButton>
           </ListItem>
           <Collapse in={isConst} timeout="auto">
-            <ListItem
-              disablePadding
-              sx={{ display: "block" }}
-              onClick={() => {
-                navigate("/InventoryStatus");
-              }}
-            >
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
-                >
-                  {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                </ListItemIcon>
-                <ListItemText
-                  primary="Inventory Status"
-                  sx={{ opacity: open ? 1 : 0, fontSize: "15px" }}
-                />
-              </ListItemButton>
-            </ListItem>
+            
             <ListItem
               disablePadding
               sx={{ display: "block" }}
@@ -775,6 +712,35 @@ const Sidebar = () => {
                 </ListItemIcon>
                 <ListItemText
                   primary="Site Management Plan"
+                  sx={{ opacity: open ? 1 : 0, fontSize: "15px" }}
+                />
+              </ListItemButton>
+            </ListItem>
+            <ListItem
+              disablePadding
+              sx={{ display: "block" }}
+              onClick={() => {
+                navigate("/Safetychecks");
+              }}
+            >
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                </ListItemIcon>
+                <ListItemText
+                  primary="Saftey Checks"
                   sx={{ opacity: open ? 1 : 0, fontSize: "15px" }}
                 />
               </ListItemButton>

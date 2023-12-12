@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Sidebar from "../Sidebar";
 import ProposalForm from "../../component/proposalData/ProposalForm";
+import ProposalTable from "../../component/proposalData/ProposalTable";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -20,9 +21,12 @@ const Proposal = () => {
       <Sidebar />
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Typography>Proposal</Typography>
+        <Typography variant="h6">Proposal</Typography>
         <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
           <ProposalForm/>
+        </Box>
+        <Box>
+          <ProposalTable/>
         </Box>
       </Box>
     </Box>

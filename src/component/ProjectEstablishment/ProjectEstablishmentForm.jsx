@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -13,7 +13,7 @@ import FormControl from "@mui/material/FormControl";
 import { Textarea } from "@mui/joy";
 
 const ProjectEstablishmentForm = () => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 

@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Sidebar from "../Sidebar";
 import ContactInfoForm from "../../component/contactInfoData/ContactInfoForm";
+import ContractFormTable from "../../component/contactInfoData/ContractFormTable";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -23,6 +24,9 @@ const ContractInfo = () => {
         <Typography variant="h6">Contract Info</Typography>
         <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
           <ContactInfoForm/>
+        </Box>
+        <Box>
+          <ContractFormTable/>
         </Box>
       </Box>
     </Box>
