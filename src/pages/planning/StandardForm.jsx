@@ -25,16 +25,16 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/b
 const StandardForm = () => {
   const [numPages, setNumPages] = useState();
   const [pageNumber, setPageNumber] = useState(1);
-  const [one, setOne] = useState( );
+  const [one, setOne] = useState();
   const [two, setTwo] = useState();
-  const [three, setThree] = useState()
-  const [four, setFour] = useState()
-  const [five, setFive] = useState()
-  const [six, setSix] = useState()
-  const [seven, setSeven] = useState()
-  const [eight, setEight] = useState()
-  const [nine, setNine] = useState()
-  const [ten, setTen] = useState()
+  const [three, setThree] = useState();
+  const [four, setFour] = useState();
+  const [five, setFive] = useState();
+  const [six, setSix] = useState();
+  const [seven, setSeven] = useState();
+  const [eight, setEight] = useState();
+  const [nine, setNine] = useState();
+  const [ten, setTen] = useState();
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
@@ -64,8 +64,13 @@ const StandardForm = () => {
                     <Typography
                       variant="subtitle1"
                       component="h6"
-                      sx={{ pl: 1, color: "red", textDecoration: "underline", cursor:"pointer" }}
-                      onClick={()=> setOne(Pdf)}
+                      sx={{
+                        pl: 1,
+                        color: "red",
+                        textDecoration: "underline",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => setOne(Pdf)}
                     >
                       Show PDF
                     </Typography>
@@ -77,8 +82,13 @@ const StandardForm = () => {
                     <Typography
                       variant="subtitle1"
                       component="h6"
-                      sx={{ pl: 1, color: "red", textDecoration: "underline", cursor:"pointer" }}
-                      onClick={()=>setTwo()}
+                      sx={{
+                        pl: 1,
+                        color: "red",
+                        textDecoration: "underline",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => setTwo()}
                     >
                       Show PDF
                     </Typography>
@@ -90,14 +100,19 @@ const StandardForm = () => {
                     <Typography
                       variant="subtitle1"
                       component="h6"
-                      sx={{ pl: 1, color: "red", textDecoration: "underline", cursor:"pointer" }}
-                      onClick={()=>setThree()}
+                      sx={{
+                        pl: 1,
+                        color: "red",
+                        textDecoration: "underline",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => setThree()}
                     >
                       Show PDF
                     </Typography>
                   </Box>
                 </Box>
-                <Box sx={{mt:3}}>
+                <Box sx={{ mt: 3 }}>
                   <Box sx={{ display: "flex", alignItems: "center", my: 1 }}>
                     <Typography variant="subtitle1" component="h6">
                       Traffic Survey Analysis :
@@ -105,8 +120,13 @@ const StandardForm = () => {
                     <Typography
                       variant="subtitle1"
                       component="h6"
-                      sx={{ pl: 1, color: "red", textDecoration: "underline", cursor:"pointer" }}
-                      onClick={()=>setFour()}
+                      sx={{
+                        pl: 1,
+                        color: "red",
+                        textDecoration: "underline",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => setFour()}
                     >
                       Show PDF
                     </Typography>
@@ -118,8 +138,13 @@ const StandardForm = () => {
                     <Typography
                       variant="subtitle1"
                       component="h6"
-                      sx={{ pl: 1, color: "red", textDecoration: "underline", cursor:"pointer" }}
-                      onClick={()=>setFive()}
+                      sx={{
+                        pl: 1,
+                        color: "red",
+                        textDecoration: "underline",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => setFive()}
                     >
                       Show PDF
                     </Typography>
@@ -131,14 +156,19 @@ const StandardForm = () => {
                     <Typography
                       variant="subtitle1"
                       component="h6"
-                      sx={{ pl: 1, color: "red", textDecoration: "underline", cursor:"pointer" }}
-                      onClick={()=>setSix()}
+                      sx={{
+                        pl: 1,
+                        color: "red",
+                        textDecoration: "underline",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => setSix()}
                     >
                       Show PDF
                     </Typography>
                   </Box>
                 </Box>
-                <Box sx={{mt:3}}>
+                <Box sx={{ mt: 3 }}>
                   <Box sx={{ display: "flex", alignItems: "center", my: 1 }}>
                     <Typography variant="subtitle1" component="h6">
                       Soil Testing Report :
@@ -146,8 +176,13 @@ const StandardForm = () => {
                     <Typography
                       variant="subtitle1"
                       component="h6"
-                      sx={{ pl: 1, color: "red", textDecoration: "underline", cursor:"pointer" }}
-                      onClick={()=>setSeven()}
+                      sx={{
+                        pl: 1,
+                        color: "red",
+                        textDecoration: "underline",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => setSeven()}
                     >
                       Show PDF
                     </Typography>
@@ -159,8 +194,13 @@ const StandardForm = () => {
                     <Typography
                       variant="subtitle1"
                       component="h6"
-                      sx={{ pl: 1, color: "red", textDecoration: "underline", cursor:"pointer" }}
-                      onClick={()=>setEight()}
+                      sx={{
+                        pl: 1,
+                        color: "red",
+                        textDecoration: "underline",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => setEight()}
                     >
                       Show PDF
                     </Typography>
@@ -172,14 +212,19 @@ const StandardForm = () => {
                     <Typography
                       variant="subtitle1"
                       component="h6"
-                      sx={{ pl: 1, color: "red", textDecoration: "underline", cursor:"pointer" }}
-                      onClick={()=>setNine()}
+                      sx={{
+                        pl: 1,
+                        color: "red",
+                        textDecoration: "underline",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => setNine()}
                     >
                       Show PDF
                     </Typography>
                   </Box>
                 </Box>
-                <Box sx={{mt:3}}>
+                <Box sx={{ mt: 3 }}>
                   <Box sx={{ display: "flex", alignItems: "center", my: 1 }}>
                     <Typography variant="subtitle1" component="h6">
                       Initial cost estimation plan :
@@ -187,8 +232,13 @@ const StandardForm = () => {
                     <Typography
                       variant="subtitle1"
                       component="h6"
-                      sx={{ pl: 1, color: "red", textDecoration: "underline", cursor:"pointer" }}
-                      onClick={()=>setTen()}
+                      sx={{
+                        pl: 1,
+                        color: "red",
+                        textDecoration: "underline",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => setTen()}
                     >
                       Show PDF
                     </Typography>
