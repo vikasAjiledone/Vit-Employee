@@ -1,8 +1,7 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-// import Sidebar from "../Sidebar";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -14,6 +13,27 @@ import { Textarea } from "@mui/joy";
 
 const ProjectEstablishmentForm = () => {
   const [open, setOpen] = useState(false);
+  const [Title, setTitle] = useState();
+  const [date, setDate] = useState();
+  const [Name, setName] = useState();
+  const [Organization, setOrganization] = useState();
+  const [Address, setAddress] = useState();
+  const [Contact, setContact] = useState();
+  const [Email, setEmail] = useState();
+  const [Fax, setFax] = useState();
+  const [Budget, setBudget] = useState();
+  const [sName, setSname] = useState();
+  const [sOrganization, setSOrganization] = useState();
+  const [sAddress, setSAddress] = useState();
+  const [sContact, setSContact] = useState();
+  const [sEmail, setSEmail] = useState();
+  const [sFax, setSFax] = useState();
+  const [Overview, setOverview] = useState();
+  const [Goals, setGoals] = useState();
+  const [Scope, setScope] = useState();
+  const [Permission, setPermission] = useState();
+  const [Miscellaneous, setMiscellaneous] = useState();
+
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -23,6 +43,31 @@ const ProjectEstablishmentForm = () => {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("Title", Title);
+    formData.append("date", date);
+    formData.append("Name", Name);
+    formData.append("Organization", Organization);
+    formData.append("Address", Address);
+    formData.append("Contact", Contact);
+    formData.append("Email", Email);
+    formData.append("Fax", Fax);
+    formData.append("Budget", Budget);
+    formData.append("sName", sName);
+    formData.append("sOrganization", sOrganization);
+    formData.append("sAddress", sAddress);
+    formData.append("sContact", sContact);
+    formData.append("sEmail", sEmail);
+    formData.append("sFax", sFax);
+    formData.append("Overview", Overview);
+    formData.append("Goals", Goals);
+    formData.append("Scope", Scope);
+    formData.append("Permission", Permission);
+    formData.append("Miscellaneous", Miscellaneous);
   };
 
   return (
@@ -42,30 +87,11 @@ const ProjectEstablishmentForm = () => {
             aria-labelledby="responsive-dialog-title"
           >
             <Box>
-              <FormControl>
+              <form onSubmit={handleSubmit}>
                 <DialogTitle id="responsive-dialog-title">
                   {"Project Establishment Form"}
                 </DialogTitle>
-                <Box
-                  sx={{
-                    py: 1,
-                    px: 7,
-                    width: 500,
-                  }}
-                >
-                  <Box>
-                    <Typography variant="subtitle2" component="p">
-                      Project ID
-                    </Typography>
-                  </Box>
-                  <TextField
-                    name="Outlined"
-                    placeholder="Project ID"
-                    variant="outlined"
-                    size="small"
-                    sx={{ width: "100%" }}
-                  />
-                </Box>
+
                 <Box
                   sx={{
                     py: 1,
@@ -83,6 +109,7 @@ const ProjectEstablishmentForm = () => {
                     variant="outlined"
                     size="small"
                     sx={{ width: "100%" }}
+                    onChange={(e) => setTitle(e.target.value)}
                   />
                 </Box>
                 <Box
@@ -103,6 +130,7 @@ const ProjectEstablishmentForm = () => {
                     size="small"
                     type="date"
                     sx={{ width: "100%" }}
+                    onChange={(e) => setDate(e.target.value)}
                   />
                 </Box>
                 <DialogTitle id="responsive-dialog-title">
@@ -126,6 +154,7 @@ const ProjectEstablishmentForm = () => {
                       variant="outlined"
                       size="small"
                       sx={{ width: "100%" }}
+                      onChange={(e) => setName(e.target.value)}
                     />
                   </Box>
                   <Box
@@ -145,6 +174,7 @@ const ProjectEstablishmentForm = () => {
                       variant="outlined"
                       size="small"
                       sx={{ width: "100%" }}
+                      onChange={(e) => setOrganization(e.target.value)}
                     />
                   </Box>
                   <Box
@@ -164,6 +194,7 @@ const ProjectEstablishmentForm = () => {
                       variant="outlined"
                       size="small"
                       sx={{ width: "100%" }}
+                      onChange={(e) => setAddress(e.target.value)}
                     />
                   </Box>
                   <Box
@@ -183,6 +214,7 @@ const ProjectEstablishmentForm = () => {
                       variant="outlined"
                       size="small"
                       sx={{ width: "100%" }}
+                      onChange={(e) => setContact(e.target.value)}
                     />
                   </Box>
                   <Box
@@ -203,6 +235,7 @@ const ProjectEstablishmentForm = () => {
                       size="small"
                       type="email"
                       sx={{ width: "100%" }}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </Box>
                   <Box
@@ -222,6 +255,7 @@ const ProjectEstablishmentForm = () => {
                       variant="outlined"
                       size="small"
                       sx={{ width: "100%" }}
+                      onChange={(e) => setFax(e.target.value)}
                     />
                   </Box>
                 </Box>
@@ -242,6 +276,7 @@ const ProjectEstablishmentForm = () => {
                     variant="outlined"
                     size="small"
                     sx={{ width: "100%" }}
+                    onChange={(e) => setBudget(e.target.value)}
                   />
                 </Box>
                 <DialogTitle id="responsive-dialog-title">
@@ -265,6 +300,7 @@ const ProjectEstablishmentForm = () => {
                       variant="outlined"
                       size="small"
                       sx={{ width: "100%" }}
+                      onChange={(e) => setSname(e.target.value)}
                     />
                   </Box>
                   <Box
@@ -284,6 +320,7 @@ const ProjectEstablishmentForm = () => {
                       variant="outlined"
                       size="small"
                       sx={{ width: "100%" }}
+                      onChange={(e) => setSOrganization(e.target.value)}
                     />
                   </Box>
                   <Box
@@ -303,6 +340,7 @@ const ProjectEstablishmentForm = () => {
                       variant="outlined"
                       size="small"
                       sx={{ width: "100%" }}
+                      onChange={(e) => setSAddress(e.target.value)}
                     />
                   </Box>
                   <Box
@@ -322,6 +360,7 @@ const ProjectEstablishmentForm = () => {
                       variant="outlined"
                       size="small"
                       sx={{ width: "100%" }}
+                      onChange={(e) => setSContact(e.target.value)}
                     />
                   </Box>
                   <Box
@@ -342,6 +381,7 @@ const ProjectEstablishmentForm = () => {
                       size="small"
                       type="email"
                       sx={{ width: "100%" }}
+                      onChange={(e) => setSEmail(e.target.value)}
                     />
                   </Box>
                   <Box
@@ -361,6 +401,7 @@ const ProjectEstablishmentForm = () => {
                       variant="outlined"
                       size="small"
                       sx={{ width: "100%" }}
+                      onChange={(e) => setSFax(e.target.value)}
                     />
                   </Box>
                 </Box>
@@ -375,7 +416,10 @@ const ProjectEstablishmentForm = () => {
                       Project Overview
                     </Typography>
                   </Box>
-                  <Textarea minRows={2} />
+                  <Textarea
+                    minRows={2}
+                    onChange={(e) => setOverview(e.target.value)}
+                  />
                 </Box>
                 <Box
                   sx={{
@@ -388,7 +432,10 @@ const ProjectEstablishmentForm = () => {
                       Project Goals
                     </Typography>
                   </Box>
-                  <Textarea minRows={2} />
+                  <Textarea
+                    minRows={2}
+                    onChange={(e) => setGoals(e.target.value)}
+                  />
                 </Box>
                 <Box
                   sx={{
@@ -401,7 +448,10 @@ const ProjectEstablishmentForm = () => {
                       Project Scope
                     </Typography>
                   </Box>
-                  <Textarea minRows={2} />
+                  <Textarea
+                    minRows={2}
+                    onChange={(e) => setScope(e.target.value)}
+                  />
                 </Box>
                 <Box
                   sx={{
@@ -421,6 +471,7 @@ const ProjectEstablishmentForm = () => {
                     size="small"
                     type="text"
                     sx={{ width: "100%" }}
+                    onChange={(e) => setPermission(e.target.value)}
                   />
                 </Box>
                 <Box
@@ -434,17 +485,21 @@ const ProjectEstablishmentForm = () => {
                       Miscellaneous Info
                     </Typography>
                   </Box>
-                  <Textarea minRows={2} />
+                  <Textarea
+                    minRows={2}
+                    onChange={(e) => setMiscellaneous(e.target.value)}
+                  />
                 </Box>
                 <DialogActions>
-                  {/* <Button autoFocus onClick={handleClose}>
-                      Disagree
-                    </Button> */}
-                  <Button onClick={handleClose} variant="contained">
+                  <Button
+                    onClick={handleClose}
+                    variant="contained"
+                    type="submit"
+                  >
                     Submit
                   </Button>
                 </DialogActions>
-              </FormControl>
+              </form>
             </Box>
           </Dialog>
         </Box>
