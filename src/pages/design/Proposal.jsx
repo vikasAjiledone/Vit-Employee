@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Sidebar from "../Sidebar";
 import ProposalForm from "../../component/proposalData/ProposalForm";
-import ProposalTable from "../../component/proposalData/ProposalTable";
+import ProposalView from "../../component/proposalData/ProposalView";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -26,7 +26,7 @@ const Proposal = () => {
           <ProposalForm/>
         </Box>
         <Box>
-          <ProposalTable/>
+          <ProposalView/>
         </Box>
       </Box>
     </Box>

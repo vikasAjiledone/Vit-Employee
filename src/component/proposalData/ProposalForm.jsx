@@ -137,7 +137,7 @@ const ProposalForm = () => {
                   </Box>
                   <TextField
                     name="Outlined"
-                    placeholder="Enter The Date"
+                    placeholder="Project Description"
                     variant="outlined"
                     size="small"
                     type="text"
@@ -159,7 +159,7 @@ const ProposalForm = () => {
                   </Box>
                   <TextField
                     name="Outlined"
-                    placeholder="Initial Budget"
+                    placeholder="Contact Person"
                     variant="outlined"
                     size="small"
                     type="text"
@@ -180,7 +180,7 @@ const ProposalForm = () => {
                   </Box>
                   <TextField
                     name="Outlined"
-                    placeholder="Initial Budget"
+                    placeholder="Information for Bidding"
                     variant="outlined"
                     size="small"
                     type="text"
@@ -201,7 +201,7 @@ const ProposalForm = () => {
                   </Box>
                   <TextField
                     name="Outlined"
-                    placeholder="Initial Budget"
+                    placeholder="Tender Notice"
                     variant="outlined"
                     size="small"
                     type="file"

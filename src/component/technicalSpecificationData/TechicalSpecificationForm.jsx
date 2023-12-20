@@ -35,6 +35,7 @@ const TechicalSpecificationForm = () => {
   const [Methodology, setMethodology] = useState();
   const [projectId, setProjectID] = useState();
   const [projectTitle, setProjectTitle] = useState();
+  const [data, setData] = useState();
 
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -87,6 +88,20 @@ const TechicalSpecificationForm = () => {
         setProjectTitle(res.data.projectEstablishmentData);
       });
   }, []);
+
+  const selectedId = async (id) => {
+    try {
+      axios({
+        method: "GET",
+        url: `http://localhost:3000/api/getSingleProjectEstablishment?projectId=${id}`,
+      }).then((res) => {
+        console.log(res.data.projectEstablishmentData);
+        setData(res.data.projectEstablishmentData);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   console.log(projectId);
 

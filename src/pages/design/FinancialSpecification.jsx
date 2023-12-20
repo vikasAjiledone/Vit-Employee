@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Sidebar from "../Sidebar";
 import FinancialSpecificationForm from "../../component/financialSpecification/FinancialSpecificationForm";
-import FinancialSpecificationTable from "../../component/financialSpecification/FinancialSpecificationTable";
+import FinancialSpecificationView from "../../component/financialSpecification/FinancialSpecificationView";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -25,8 +25,8 @@ const FinancialSpecification = () => {
         <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
           <FinancialSpecificationForm/>
         </Box>
-        <Box>
-          <FinancialSpecificationTable/>
+        <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
+          <FinancialSpecificationView/>
         </Box>
       </Box>
     </Box>

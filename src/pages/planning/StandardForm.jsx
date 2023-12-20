@@ -6,11 +6,9 @@ import Typography from "@mui/material/Typography";
 import Sidebar from "../Sidebar";
 import StandardFormPopup from "../../component/standardFormPopup/StandardFormPopup";
 import { Document, Page } from "react-pdf";
-// import Pdf from "../../demo.pdf";
 import { pdfjs } from "react-pdf";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -21,7 +19,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   alignItems: "center",
   justifyContent: "flex-end",
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
 
