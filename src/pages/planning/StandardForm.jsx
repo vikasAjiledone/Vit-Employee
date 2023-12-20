@@ -30,15 +30,6 @@ const StandardForm = () => {
   const [numPages, setNumPages] = useState();
   const [pageNumber, setPageNumber] = useState(1);
   const [one, setOne] = useState();
-  const [two, setTwo] = useState();
-  const [three, setThree] = useState();
-  const [four, setFour] = useState();
-  const [five, setFive] = useState();
-  const [six, setSix] = useState();
-  const [seven, setSeven] = useState();
-  const [eight, setEight] = useState();
-  const [nine, setNine] = useState();
-  const [ten, setTen] = useState();
   const [projectTitle, setProjectTitle] = useState();
   const [projectId, setProjectID] = useState();
   const [data, setData] = useState();
@@ -46,11 +37,11 @@ const StandardForm = () => {
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
   }
+  
   useEffect(() => {
     axios
       .get(`http://localhost:3000/api/getProjectEstablishment`)
       .then((res) => {
-        console.log(res.data);
         setProjectTitle(res.data.projectEstablishmentData);
       });
   }, []);
@@ -61,15 +52,13 @@ const StandardForm = () => {
         method: "GET",
         url: `http://localhost:3000/api/getSingleProjectEstablishment?projectId=${id}`,
       }).then((res) => {
-        console.log(res.data);
-        setData(res.data);
+        setData(res.data.projectEstablishmentData.StandardForm);
+        console.log("data", res.data.projectEstablishmentData.StandardForm)
       });
     } catch (error) {
       console.log(error);
     }
   };
-
-  console.log(projectId);
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -90,21 +79,20 @@ const StandardForm = () => {
                 <Box>
                   <Box sx={{ py: 0, px: 0 }}>
                     <InputLabel id="simple-select-label">Project ID</InputLabel>
-
                     <Select
                       sx={{
                         width: "30%",
                         height: 40,
                       }}
                       onChange={(e) => {
-                        setProjectID(e._id);
-                        selectedId(e._id);
+                        setProjectID(e.target.value);
+                        selectedId(e.target.value);
                       }}
                     >
                       {projectTitle &&
                         projectTitle.map((e) => {
                           return (
-                            <MenuItem value={e.ProjectTitle}>
+                            <MenuItem key={e._id} value={e._id}>
                               {e.ProjectTitle}
                             </MenuItem>
                           );

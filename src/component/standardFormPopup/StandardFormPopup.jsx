@@ -27,6 +27,7 @@ const StandardFormPopup = () => {
   const [cost, setcost] = useState("");
   const [projectTitle, setProjectTitle] = useState();
   const [projectId, setProjectID] = useState();
+  const [setId, setSetID] = useState();
 
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -47,7 +48,7 @@ const StandardFormPopup = () => {
     e.preventDefault();
     try {
       const formData = new FormData();
-      console.log(projectId)
+      console.log(projectId);
       formData.append("projectId", projectId);
       formData.append("reconnaissanceReport", Reconnaissance);
       formData.append("topographicSurveyReport", Topographic);
@@ -59,7 +60,7 @@ const StandardFormPopup = () => {
       formData.append("sociolEconomicProfile", Socio);
       formData.append("builtEnvironmentlayout", Built);
       formData.append("initialcostestimationplan", cost);
-      
+
       const response = await axios({
         method: "POST",
         url: `http://localhost:3000/api/createStandardForm`,
@@ -105,22 +106,25 @@ const StandardFormPopup = () => {
                 </DialogTitle>
                 <Box sx={{ py: 1, px: 7 }}>
                   <InputLabel id="simple-select-label">Project ID</InputLabel>
-                  {projectTitle &&
-                    projectTitle.map((e) => {
-                      return (
-                        <Select
-                          sx={{
-                            width: "100%",
-                            height: 50,
-                          }}
-                          onChange={() => setProjectID(e._id)}
-                        >
-                          <MenuItem value={e.ProjectTitle}>
+
+                  <Select
+                    sx={{
+                      width: "100%",
+                      height: 50,
+                    }}
+                    onChange={(e) => {
+                      setProjectID(e.target.value);
+                    }}
+                  >
+                    {projectTitle &&
+                      projectTitle.map((e) => {
+                        return (
+                          <MenuItem key={e._id} value={e._id}>
                             {e.ProjectTitle}
                           </MenuItem>
-                        </Select>
-                      );
-                    })}
+                        );
+                      })}
+                  </Select>
                 </Box>
                 <Box
                   sx={{
