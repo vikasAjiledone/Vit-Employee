@@ -10,6 +10,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import FormControl from "@mui/material/FormControl";
 import { Textarea } from "@mui/joy";
+import axios from "axios";
 
 const ProjectEstablishmentForm = () => {
   const [open, setOpen] = useState(false);
@@ -45,30 +46,42 @@ const ProjectEstablishmentForm = () => {
     setOpen(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("Title", Title);
-    formData.append("date", date);
-    formData.append("Name", Name);
-    formData.append("Organization", Organization);
-    formData.append("Address", Address);
-    formData.append("Contact", Contact);
-    formData.append("Email", Email);
-    formData.append("Fax", Fax);
-    formData.append("Budget", Budget);
-    formData.append("sName", sName);
-    formData.append("sOrganization", sOrganization);
-    formData.append("sAddress", sAddress);
-    formData.append("sContact", sContact);
-    formData.append("sEmail", sEmail);
-    formData.append("sFax", sFax);
-    formData.append("Overview", Overview);
-    formData.append("Goals", Goals);
-    formData.append("Scope", Scope);
-    formData.append("Permission", Permission);
-    formData.append("Miscellaneous", Miscellaneous);
+    try {
+      const response = await axios({
+        method:"POST",
+        url : "http://localhost:3000/api/createProjectEstablisment",
+        data :{
+          projectTitle: Title ,
+          entryDate : date,
+          name : Name,
+          organization :Organization,
+          address : Address,
+          contactNo :Contact,
+          email : Email,
+          fax: Fax,
+          initialBudget : Budget,
+          sponsername : sName,
+          sponserorganization : sOrganization,
+          sponseraddress : sAddress,
+          sponsercontactNo : sContact,
+          sponseremail : sEmail,
+          sponserfax : sFax,
+          projectOverview : Overview,
+          projectGoal : Goals,
+          projectScope : Scope,
+          permissionRequired : Permission,
+          miscellaneousInfo : Miscellaneous,
+        }
+      }) 
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
   };
+
+ 
 
   return (
     <div>

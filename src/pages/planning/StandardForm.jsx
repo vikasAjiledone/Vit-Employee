@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -10,6 +10,10 @@ import { pdfjs } from "react-pdf";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
+import Select from "@mui/material/Select";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import axios from "axios";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -35,10 +39,37 @@ const StandardForm = () => {
   const [eight, setEight] = useState();
   const [nine, setNine] = useState();
   const [ten, setTen] = useState();
+  const [projectTitle, setProjectTitle] = useState();
+  const [projectId, setProjectID] = useState();
+  const [data, setData] = useState();
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
   }
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/api/getProjectEstablishment`)
+      .then((res) => {
+        console.log(res.data);
+        setProjectTitle(res.data.projectEstablishmentData);
+      });
+  }, []);
+
+  const selectedId = async (id) => {
+    try {
+      const response = await axios({
+        method: "GET",
+        url: `http://localhost:3000/api/getSingleProjectEstablishment?projectId=${id}`,
+      }).then((res) => {
+        console.log(res.data);
+        setData(res.data);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  console.log(projectId);
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -57,6 +88,29 @@ const StandardForm = () => {
             <CardContent>
               <Box>
                 <Box>
+                  <Box sx={{ py: 0, px: 0 }}>
+                    <InputLabel id="simple-select-label">Project ID</InputLabel>
+
+                    <Select
+                      sx={{
+                        width: "30%",
+                        height: 40,
+                      }}
+                      onChange={(e) => {
+                        setProjectID(e._id);
+                        selectedId(e._id);
+                      }}
+                    >
+                      {projectTitle &&
+                        projectTitle.map((e) => {
+                          return (
+                            <MenuItem value={e.ProjectTitle}>
+                              {e.ProjectTitle}
+                            </MenuItem>
+                          );
+                        })}
+                    </Select>
+                  </Box>
                   <Box sx={{ display: "flex", alignItems: "center", my: 1 }}>
                     <Typography variant="subtitle1" component="h6">
                       Reconnaissance Report :
