@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -13,6 +13,7 @@ import { Textarea } from "@mui/joy";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
+import axios from 'axios'
 
 const TechicalSpecificationForm = () => {
   const [open, setOpen] = useState(false);
@@ -32,6 +33,8 @@ const TechicalSpecificationForm = () => {
   const [Traffic, setTraffic] = useState();
   const [Item, setItem] = useState();
   const [Methodology, setMethodology] = useState();
+  const [projectId, setProjectID] = useState();
+  const [projectTitle, setProjectTitle] = useState();
 
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -44,45 +47,48 @@ const TechicalSpecificationForm = () => {
     setOpen(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("Basic", Basic);
-    formData.append("Noise", Noise);
-    formData.append("Embarkment", Embarkment);
-    formData.append("Soil", Soil);
-    formData.append("Road", Road);
-    formData.append("Sanitation", Sanitation);
-    formData.append("Safety", Safety);
-    formData.append("Environmental", Environmental);
-    formData.append("Introductions", Introductions);
-    formData.append("Provisions", Provisions);
-    formData.append("Contract", Contract);
-    formData.append("Site", Site);
-    formData.append("Public", Public);
-    formData.append("Traffic", Traffic);
-    formData.append("Item", Item);
-    formData.append("Methodology", Methodology);
-
-    console.log(
-      Basic,
-      Noise,
-      Embarkment,
-      Soil,
-      Road,
-      Sanitation,
-      Safety,
-      Environmental,
-      Introductions,
-      Provisions,
-      Contract,
-      Site,
-      Public,
-      Traffic,
-      Item,
-      Methodology
-    );
+    try {
+      const response = await axios({
+        method: "POST",
+        url: `http://localhost:3000/api/createTechnicalSpecification`,
+        data: {
+          projectId: projectId,
+          basicGuidelineForContractor: Basic,
+          noise: Noise,
+          embarkmentConstruction: Embarkment,
+          soilErosionAndSedimentationControl: Soil,
+          roadSafety: Road,
+          sanitationAndWasteDisposal: Sanitation,
+          safetyGuideline: Safety,
+          environmentScreening: Environmental,
+          technicalIntroduction: Introductions,
+          technicalProvisionsadheredtoMoRTHSpecifications: Provisions,
+          technicalContractDrawings: Contract,
+          technicalSiteinformation: Site,
+          technicalPublicUtilities: Public,
+          technicalTrafficPlanduringconstruction: Traffic,
+          technicalItemratesofwork: Item,
+          technicalMethodologyandsequenceandwork: Methodology,
+        },
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/api/getProjectEstablishment`)
+      .then((res) => {
+        console.log(res.data);
+        setProjectTitle(res.data.projectEstablishmentData);
+      });
+  }, []);
+
+  console.log(projectId);
 
   return (
     <div>
@@ -109,18 +115,21 @@ const TechicalSpecificationForm = () => {
                   <InputLabel id="simple-select-label">Project ID</InputLabel>
                   <Select
                     sx={{
-                      // marginTop: 35,
                       width: "100%",
                       height: 50,
                     }}
+                    onChange={(e) => {
+                      setProjectID(e.target.value);
+                    }}
                   >
-                    <MenuItem value={1} selected>
-                      Red
-                    </MenuItem>
-                    <MenuItem value={2}>Black</MenuItem>
-                    <MenuItem value={3}>Blue</MenuItem>
-                    <MenuItem value={4}>Green</MenuItem>
-                    <MenuItem value={5}>Yellow</MenuItem>
+                    {projectTitle &&
+                      projectTitle.map((e) => {
+                        return (
+                          <MenuItem key={e._id} value={e._id}>
+                            {e.ProjectTitle}
+                          </MenuItem>
+                        );
+                      })}
                   </Select>
                 </Box>
                 <Box

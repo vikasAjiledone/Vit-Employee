@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -11,6 +11,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
+import axios from 'axios'
 
 const FinancialSpecificationForm = () => {
   const [open, setOpen] = useState(false);
@@ -19,6 +20,8 @@ const FinancialSpecificationForm = () => {
   const [Estimation, setEstimation] = useState();
   const [Unit, setUnit] = useState();
   const [Critical, setCritical] = useState();
+  const [projectId, setProjectID] = useState();
+  const [projectTitle, setProjectTitle] = useState();
 
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -31,16 +34,37 @@ const FinancialSpecificationForm = () => {
     setOpen(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("Cash", Cash)
-    formData.append("project", project)
-    formData.append("Estimation", Estimation)
-    formData.append("Unit", Unit)
-    formData.append("Critical", Critical)
-    console.log(Cash, project, Estimation, Unit, Critical)
+    try {
+      const response = await axios({
+        method: "POST",
+        url: `http://localhost:3000/api/createFinancialSpecification`,
+        data: {
+          projectId : projectId,
+          cashFlow : Cash,
+          totalProjectCost : project,
+          estimationOfQualities : Estimation,
+          unitRateOfCivilWorks : Unit,
+          criticalFactors : Critical,
+        },
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/api/getProjectEstablishment`)
+      .then((res) => {
+        console.log(res.data);
+        setProjectTitle(res.data.projectEstablishmentData);
+      });
+  }, []);
+
+  console.log(projectId)
 
   return (
     <div>
@@ -66,18 +90,23 @@ const FinancialSpecificationForm = () => {
                 <Box sx={{ py: 1, px: 7 }}>
                 <InputLabel id="simple-select-label">Project ID</InputLabel>
                 <Select
-                  sx={{
-                    // marginTop: 35,
-                    width: "100%",
-                    height: 50,
-                  }}
-                >
-                  <MenuItem value={1} selected>Red</MenuItem>
-                  <MenuItem value={2}>Black</MenuItem>
-                  <MenuItem value={3}>Blue</MenuItem>
-                  <MenuItem value={4}>Green</MenuItem>
-                  <MenuItem value={5}>Yellow</MenuItem>
-                </Select>
+                    sx={{
+                      width: "100%",
+                      height: 50,
+                    }}
+                    onChange={(e) => {
+                      setProjectID(e.target.value);
+                    }}
+                  >
+                    {projectTitle &&
+                      projectTitle.map((e) => {
+                        return (
+                          <MenuItem key={e._id} value={e._id}>
+                            {e.ProjectTitle}
+                          </MenuItem>
+                        );
+                      })}
+                  </Select>
                 </Box>
                 <Box
                   sx={{

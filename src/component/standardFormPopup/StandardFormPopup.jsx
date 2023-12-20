@@ -40,10 +40,6 @@ const StandardFormPopup = () => {
     setOpen(false);
   };
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
-
   const submitDocs = async (e) => {
     e.preventDefault();
     try {
@@ -81,7 +77,7 @@ const StandardFormPopup = () => {
       });
   }, []);
 
-  console.log(projectId);
+  console.log(projectId)
 
   return (
     <div>
@@ -106,7 +102,6 @@ const StandardFormPopup = () => {
                 </DialogTitle>
                 <Box sx={{ py: 1, px: 7 }}>
                   <InputLabel id="simple-select-label">Project ID</InputLabel>
-
                   <Select
                     sx={{
                       width: "100%",

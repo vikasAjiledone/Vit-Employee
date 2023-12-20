@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import React, { useState, useEffect } from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -5,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import Sidebar from "../Sidebar";
 import StandardFormPopup from "../../component/standardFormPopup/StandardFormPopup";
 import { Document, Page } from "react-pdf";
-import Pdf from "../../demo.pdf";
+// import Pdf from "../../demo.pdf";
 import { pdfjs } from "react-pdf";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -29,7 +30,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/b
 const StandardForm = () => {
   const [numPages, setNumPages] = useState();
   const [pageNumber, setPageNumber] = useState(1);
-  const [one, setOne] = useState();
+  const [selectedPdf, setSelectedPdf] = useState(null);
   const [projectTitle, setProjectTitle] = useState();
   const [projectId, setProjectID] = useState();
   const [data, setData] = useState();
@@ -48,17 +49,31 @@ const StandardForm = () => {
 
   const selectedId = async (id) => {
     try {
-      const response = await axios({
+      axios({
         method: "GET",
         url: `http://localhost:3000/api/getSingleProjectEstablishment?projectId=${id}`,
       }).then((res) => {
-        setData(res.data.projectEstablishmentData.StandardForm);
-        console.log("data", res.data.projectEstablishmentData.StandardForm)
+        console.log(res.data.projectEstablishmentData);
+        setData(res.data.projectEstablishmentData);
       });
     } catch (error) {
       console.log(error);
     }
   };
+
+  const showPdf = (pdfUrl) => {
+    let updatedString = pdfUrl.replace(/\\/g, "/");
+
+    let uploadsIndex = updatedString.indexOf("/uploads");
+
+    let substring = updatedString.substring(uploadsIndex);
+
+    let outputString = "http://localhost:3000" + substring;
+
+    setSelectedPdf(outputString);
+  };
+
+  console.log(projectId);
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -81,8 +96,8 @@ const StandardForm = () => {
                     <InputLabel id="simple-select-label">Project ID</InputLabel>
                     <Select
                       sx={{
-                        width: "30%",
-                        height: 40,
+                        width: "100%",
+                        height: 50,
                       }}
                       onChange={(e) => {
                         setProjectID(e.target.value);
@@ -112,7 +127,9 @@ const StandardForm = () => {
                         textDecoration: "underline",
                         cursor: "pointer",
                       }}
-                      onClick={() => setOne(Pdf)}
+                      onClick={() =>
+                        showPdf(data?.StandardForm?.ReconnaissanceReport)
+                      }
                     >
                       Show PDF
                     </Typography>
@@ -130,7 +147,9 @@ const StandardForm = () => {
                         textDecoration: "underline",
                         cursor: "pointer",
                       }}
-                      onClick={() => setTwo()}
+                      onClick={() =>
+                        showPdf(data?.StandardForm?.TopographicSurveyReport)
+                      }
                     >
                       Show PDF
                     </Typography>
@@ -148,7 +167,7 @@ const StandardForm = () => {
                         textDecoration: "underline",
                         cursor: "pointer",
                       }}
-                      onClick={() => setThree()}
+                      onClick={() => showPdf(data?.StandardForm?.LayoutPlans)}
                     >
                       Show PDF
                     </Typography>
@@ -168,7 +187,9 @@ const StandardForm = () => {
                         textDecoration: "underline",
                         cursor: "pointer",
                       }}
-                      onClick={() => setFour()}
+                      onClick={() =>
+                        showPdf(data?.StandardForm?.TrafficSurveyAnalysis)
+                      }
                     >
                       Show PDF
                     </Typography>
@@ -186,7 +207,9 @@ const StandardForm = () => {
                         textDecoration: "underline",
                         cursor: "pointer",
                       }}
-                      onClick={() => setFive()}
+                      onClick={() =>
+                        showPdf(data?.StandardForm?.ForestclearanceForms)
+                      }
                     >
                       Show PDF
                     </Typography>
@@ -204,7 +227,9 @@ const StandardForm = () => {
                         textDecoration: "underline",
                         cursor: "pointer",
                       }}
-                      onClick={() => setSix()}
+                      onClick={() =>
+                        showPdf(data?.StandardForm?.TechnicalRequirementReport)
+                      }
                     >
                       Show PDF
                     </Typography>
@@ -224,7 +249,9 @@ const StandardForm = () => {
                         textDecoration: "underline",
                         cursor: "pointer",
                       }}
-                      onClick={() => setSeven()}
+                      onClick={() =>
+                        showPdf(data?.StandardForm?.SoilTestingReport)
+                      }
                     >
                       Show PDF
                     </Typography>
@@ -242,7 +269,9 @@ const StandardForm = () => {
                         textDecoration: "underline",
                         cursor: "pointer",
                       }}
-                      onClick={() => setEight()}
+                      onClick={() =>
+                        showPdf(data?.StandardForm?.SocioEconomicProfile)
+                      }
                     >
                       Show PDF
                     </Typography>
@@ -260,7 +289,9 @@ const StandardForm = () => {
                         textDecoration: "underline",
                         cursor: "pointer",
                       }}
-                      onClick={() => setNine()}
+                      onClick={() =>
+                        showPdf(data?.StandardForm?.BuiltEnvironmentlayout)
+                      }
                     >
                       Show PDF
                     </Typography>
@@ -280,7 +311,9 @@ const StandardForm = () => {
                         textDecoration: "underline",
                         cursor: "pointer",
                       }}
-                      onClick={() => setTen()}
+                      onClick={() =>
+                        showPdf(data?.StandardForm?.Initialcostestimationplan)
+                      }
                     >
                       Show PDF
                     </Typography>
@@ -294,19 +327,25 @@ const StandardForm = () => {
           <p>
             Page {pageNumber} of {numPages}
           </p>
-          <Document file={one} onLoadSuccess={onDocumentLoadSuccess}>
-            {Array.apply(null, Array(numPages))
-              .map((x, i) => i + 1)
-              .map((page) => {
-                return (
-                  <Page
-                    pageNumber={pageNumber}
-                    renderTextLayer={false}
-                    renderAnnotationLayer={false}
-                  />
-                );
-              })}
-          </Document>
+          {selectedPdf && (
+            <Document
+              file={{ url: selectedPdf }}
+              onLoadSuccess={onDocumentLoadSuccess}
+            >
+              {Array.apply(null, Array(numPages))
+                .map((x, i) => i + 1)
+                .map((page) => {
+                  return (
+                    <Page
+                      key={page}
+                      pageNumber={pageNumber}
+                      renderTextLayer={false}
+                      renderAnnotationLayer={false}
+                    />
+                  );
+                })}
+            </Document>
+          )}
         </div>
       </Box>
     </Box>
