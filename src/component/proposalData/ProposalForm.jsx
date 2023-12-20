@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -8,6 +8,10 @@ import DialogActions from "@mui/material/DialogActions";
 import TextField from "@mui/material/TextField";
 import DialogTitle from "@mui/material/DialogTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import axios from "axios";
+import Select from "@mui/material/Select";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
 
 const ProposalForm = () => {
   const [open, setOpen] = useState(false);
@@ -16,6 +20,8 @@ const ProposalForm = () => {
   const [Contact, setContact] = useState();
   const [Information, setInformation] = useState();
   const [Tender, setTender] = useState();
+  const [projectTitle, setProjectTitle] = useState();
+  const [projectId, setProjectID] = useState();
 
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -28,16 +34,39 @@ const ProposalForm = () => {
     setOpen(false);
   };
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/api/getProjectEstablishment`)
+      .then((res) => {
+        console.log(res.data);
+        setProjectTitle(res.data.projectEstablishmentData);
+      });
+  }, []);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("Title", Title);
-    formData.append("Description", Description);
-    formData.append("Contact", Contact);
-    formData.append("Information", Information);
-    formData.append("Tender", Tender);
-    console.log(Title, Description, Contact, Information, Tender);
+    try {
+      const formData = new FormData();
+      formData.append("projectId", projectId);
+      formData.append("projectTitle", Title);
+      formData.append("projectDescription", Description);
+      formData.append("contactPerson", Contact);
+      formData.append("infomationForbiding", Information);
+      formData.append("tendorNotice", Tender);
+
+      const response = await axios({
+        method: "POST",
+        url: "http://localhost:3000/api/createProposal",
+        data: formData,
+      });
+
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  console.log(projectId)
 
   return (
     <div>
@@ -58,33 +87,28 @@ const ProposalForm = () => {
                 <DialogTitle id="responsive-dialog-title">
                   {"Standard Form & Guidelines Form"}
                 </DialogTitle>
-                <Box
-                  sx={{
-                    py: 1,
-                    px: 7,
-                    width: 500,
-                  }}
-                >
-                  <Box>
-                    <Typography variant="subtitle2" component="p">
-                      Project ID
-                    </Typography>
-                  </Box>
-                  <TextField
-                    name="Outlined"
-                    placeholder="Project ID"
-                    variant="outlined"
-                    size="small"
-                    sx={{ width: "100%" }}
-                    type="text"
-                  />
-                </Box>
-                <Box
-                  sx={{
-                    py: 1,
-                    px: 7,
-                  }}
-                >
+
+                <Box sx={{ py: 1, px: 7 }}>
+                  <InputLabel id="simple-select-label">Project ID</InputLabel>
+                  <Select
+                    sx={{
+                      width: "100%",
+                      height: 50,
+                    }}
+                    onChange={(e) => {
+                      setProjectID(e.target.value);
+                    }}
+                  >
+                    {projectTitle &&
+                      projectTitle.map((e) => {
+                        return (
+                          <MenuItem key={e._id} value={e._id}>
+                            {e.ProjectTitle}
+                          </MenuItem>
+                        );
+                      })}
+                  </Select>
+
                   <Box>
                     <Typography variant="subtitle2" component="p">
                       Proejct Title
