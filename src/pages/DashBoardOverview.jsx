@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Sidebar from "../../pages/Sidebar";
+import Sidebar from "./Sidebar";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -18,35 +18,35 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-const ProjectEstablishmentView = () => {
-  const [projectTitle, setProjectTitle] = useState();
-  const [projectId, setProjectID] = useState();
-  const [data, setData] = useState();
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3000/api/getProjectEstablishment`)
-      .then((res) => {
-        setProjectTitle(res.data.projectEstablishmentData);
-      });
-  }, []);
-
-  const selectedId = async (id) => {
-    try {
-      axios({
-        method: "GET",
-        url: `http://localhost:3000/api/getSingleProjectEstablishment?projectId=${id}`,
-      }).then((res) => {
-        console.log(res.data?.projectEstablishmentData);
-        setData(res.data?.projectEstablishmentData);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+const DashBoardOverview = () => {
+    const [projectTitle, setProjectTitle] = useState();
+    const [projectId, setProjectID] = useState();
+    const [data, setData] = useState();
+  
+    useEffect(() => {
+      axios
+        .get(`http://localhost:3000/api/getProjectEstablishment`)
+        .then((res) => {
+          setProjectTitle(res.data.projectEstablishmentData);
+        });
+    }, []);
+  
+    const selectedId = async (id) => {
+      try {
+        axios({
+          method: "GET",
+          url: `http://localhost:3000/api/getSingleProjectEstablishment?projectId=${id}`,
+        }).then((res) => {
+          console.log(res.data?.projectEstablishmentData);
+          setData(res.data?.projectEstablishmentData);
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
   return (
-    <Box sx={{ display:"flex" }}>
+   <Box sx={{ width: "100%" }}>
       <Sidebar />
       <Box
         component="main"
@@ -307,7 +307,7 @@ const ProjectEstablishmentView = () => {
         )}
       </Box>
     </Box>
-  );
-};
+  )
+}
 
-export default ProjectEstablishmentView;
+export default DashBoardOverview

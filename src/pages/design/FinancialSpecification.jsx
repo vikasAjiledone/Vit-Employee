@@ -25,7 +25,7 @@ const FinancialSpecification = () => {
         <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
           <FinancialSpecificationForm/>
         </Box>
-        <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
+        <Box >
           <FinancialSpecificationView/>
         </Box>
       </Box>
