@@ -39,9 +39,9 @@ const StandardFormPopup = () => {
     setOpen(false);
   };
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+  // const handleChange = (event) => {
+  //   setAge(event.target.value);
+  // };
 
   const submitDocs = async (e) => {
     e.preventDefault();
