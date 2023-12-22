@@ -171,7 +171,7 @@ const Sidebar = () => {
           </IconButton>
         </Toolbar>
         <Divider />
-        {/* <List>
+        <List>
           <ListItem
             disablePadding
             sx={{ display: "block" }}
@@ -201,7 +201,7 @@ const Sidebar = () => {
               />
             </ListItemButton>
           </ListItem>
-        </List> */}
+        </List>
         {/* <Divider /> */}
         <List disablePadding>
           <ListItem

@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Sidebar from "../Sidebar";
 import PostConstructionForm from "../../component/postConstructionData/PostConstructionForm";
+import PostConstructionView from "../../component/postConstructionData/PostConstructionView";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -23,6 +24,9 @@ const ProjectCompletionDocumentation = () => {
         <Typography variant="h6">Project Completion Documentation</Typography>
         <Box sx={{ display: "flex", alignItems: "center", my: 3 }}>
           <PostConstructionForm/>
+        </Box>
+        <Box>
+          <PostConstructionView/>
         </Box>
       </Box>
     </Box>

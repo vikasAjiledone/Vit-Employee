@@ -16,7 +16,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 const PostConstructionView = () => {
     return (
-        <Box sx={{ display: "flex" }}>
+        <Box >
           <Sidebar />
           <Box
             component="main"
