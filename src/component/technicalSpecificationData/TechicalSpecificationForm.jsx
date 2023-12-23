@@ -53,7 +53,7 @@ const TechicalSpecificationForm = () => {
     try {
       const response = await axios({
         method: "POST",
-        url: `http://localhost:3000/api/createTechnicalSpecification`,
+        url: `https://vitbackend.onrender.com/api/createTechnicalSpecification`,
         data: {
           projectId: projectId,
           basicGuidelineForContractor: Basic,
@@ -82,7 +82,7 @@ const TechicalSpecificationForm = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/getProjectEstablishment`)
+      .get(`https://vitbackend.onrender.com/api/getProjectEstablishment`)
       .then((res) => {
         console.log(res.data);
         setProjectTitle(res.data.projectEstablishmentData);
@@ -93,7 +93,7 @@ const TechicalSpecificationForm = () => {
     try {
       axios({
         method: "GET",
-        url: `http://localhost:3000/api/getSingleProjectEstablishment?projectId=${id}`,
+        url: `https://vitbackend.onrender.com/api/getSingleProjectEstablishment?projectId=${id}`,
       }).then((res) => {
         console.log(res.data.projectEstablishmentData);
         setData(res.data.projectEstablishmentData);

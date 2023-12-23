@@ -11,22 +11,83 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Stack from "@mui/material/Stack";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const defaultTheme = createTheme();
 
 const BasicCard = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  const [email, setEmail] = React.useState();
+  const [password, setPassword] = React.useState();
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
   };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+
+  const navigate = useNavigate();
+
+  const handleSignin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios({
+        method: "POST",
+        url: "https://vitbackend.onrender.com/api/login",
+        data: {
+          email: email,
+          password: password,
+        },
+      });
+      console.log(response);
+      if (response.data.status) {
+        // const token = JSON.stringify()
+        setOpen(true);
+        localStorage.setItem("token", JSON.stringify(response.data.Token));
+        setTimeout(() => {
+          if (response.data.Token) {
+            navigate("/dashboard");
+          }
+        }, "2000");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  React.useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/dashboard");
+    }
+  }, []);
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert
+            onClose={handleClose}
+            severity="success"
+            sx={{ width: "100%" }}
+          >
+            Successfully logged in...
+          </Alert>
+        </Snackbar>
         <CssBaseline />
         <Box
           sx={{
@@ -44,7 +105,7 @@ const BasicCard = () => {
           </Typography>
           <Box
             component="form"
-            onSubmit={handleSubmit}
+            onSubmit={handleSignin}
             noValidate
             sx={{ mt: 1 }}
           >
@@ -56,6 +117,9 @@ const BasicCard = () => {
               label="Email Address"
               name="email"
               autoComplete="email"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
               autoFocus
             />
             <TextField
@@ -67,11 +131,11 @@ const BasicCard = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
             />
-            {/* <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            /> */}
+
             <Button
               type="submit"
               fullWidth
@@ -80,13 +144,7 @@ const BasicCard = () => {
             >
               Sign In
             </Button>
-            <Grid container>
-              {/* <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid> */}
-            </Grid>
+            <Grid container></Grid>
           </Box>
         </Box>
       </Container>

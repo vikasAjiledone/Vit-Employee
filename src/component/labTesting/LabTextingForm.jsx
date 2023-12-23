@@ -35,7 +35,7 @@ const LabTextingForm = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/getProjectEstablishment`)
+      .get(`https://vitbackend.onrender.com/api/getProjectEstablishment`)
       .then((res) => {
         console.log(res.data);
         setProjectTitle(res.data.projectEstablishmentData);
@@ -47,7 +47,7 @@ const LabTextingForm = () => {
     try {
       const response = await axios({
         method: "POST",
-        url: "http://localhost:3000/api/createLabSpecification",
+        url: "https://vitbackend.onrender.com/api/createLabSpecification",
         data: {
           projectId: projectId,
           fieldLaboratory: Field,

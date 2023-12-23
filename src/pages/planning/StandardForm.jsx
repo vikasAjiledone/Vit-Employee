@@ -38,7 +38,7 @@ const StandardForm = () => {
   
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/getProjectEstablishment`)
+      .get(`https://vitbackend.onrender.com/api/getProjectEstablishment`)
       .then((res) => {
         setProjectTitle(res.data.projectEstablishmentData);
       });
@@ -48,7 +48,7 @@ const StandardForm = () => {
     try {
       axios({
         method: "GET",
-        url: `http://localhost:3000/api/getSingleProjectEstablishment?projectId=${id}`,
+        url: `https://vitbackend.onrender.com/api/getSingleProjectEstablishment?projectId=${id}`,
       }).then((res) => {
         console.log(res.data.projectEstablishmentData);
         setData(res.data.projectEstablishmentData);

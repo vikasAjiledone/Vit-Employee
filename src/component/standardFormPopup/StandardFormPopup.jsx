@@ -63,7 +63,7 @@ const StandardFormPopup = () => {
 
       const response = await axios({
         method: "POST",
-        url: `http://localhost:3000/api/createStandardForm`,
+        url: `https://vitbackend.onrender.com/api/createStandardForm`,
         data: formData,
       });
       console.log(response);
@@ -74,7 +74,7 @@ const StandardFormPopup = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/getProjectEstablishment`)
+      .get(`https://vitbackend.onrender.com/api/getProjectEstablishment`)
       .then((res) => {
         console.log(res.data);
         setProjectTitle(res.data.projectEstablishmentData);

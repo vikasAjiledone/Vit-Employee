@@ -39,7 +39,7 @@ const FinancialSpecificationForm = () => {
     try {
       const response = await axios({
         method: "POST",
-        url: `http://localhost:3000/api/createFinancialSpecification`,
+        url: `https://vitbackend.onrender.com/api/createFinancialSpecification`,
         data: {
           projectId : projectId,
           cashFlow : Cash,
@@ -57,7 +57,7 @@ const FinancialSpecificationForm = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/getProjectEstablishment`)
+      .get(`https://vitbackend.onrender.com/api/getProjectEstablishment`)
       .then((res) => {
         console.log(res.data);
         setProjectTitle(res.data.projectEstablishmentData);

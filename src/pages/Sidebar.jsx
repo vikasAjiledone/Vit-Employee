@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
@@ -102,9 +102,38 @@ const Sidebar = () => {
     setOpen(!open);
   };
 
-  //   const handleDrawerClose = () => {
-  //     setOpen(false);
-  //   };
+  React.useEffect(() => {
+    const token = localStorage.getItem("token")
+    if(!token){
+      navigate("/")
+    }
+  }, [])
+
+  const currentDate = new Date()
+  let tokenData = localStorage.getItem("token");
+  let tokenExpiry;
+  let token;
+
+  if (tokenData) {
+    const currentDate = new Date();
+
+    tokenExpiry = new Date(JSON.parse(tokenData).expiry);
+    token = JSON.parse(tokenData).usertoken;
+    if(tokenExpiry < currentDate){
+      navigate("/")
+    }
+  }
+
+  useEffect(() => {
+    if (!tokenData) {
+      navigate("/login");
+    } else {
+      if (currentDate > tokenExpiry) {
+        localStorage.removeItem("token");
+        navigate("/login");
+      }
+    }
+  }, []);
 
   const handleMenu = () => {
     setIsCollape(!isCollape);

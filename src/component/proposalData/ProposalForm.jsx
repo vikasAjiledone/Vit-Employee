@@ -36,7 +36,7 @@ const ProposalForm = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/getProjectEstablishment`)
+      .get(`https://vitbackend.onrender.com/api/getProjectEstablishment`)
       .then((res) => {
         console.log(res.data);
         setProjectTitle(res.data.projectEstablishmentData);
@@ -56,7 +56,7 @@ const ProposalForm = () => {
 
       const response = await axios({
         method: "POST",
-        url: "http://localhost:3000/api/createProposal",
+        url: "https://vitbackend.onrender.com/api/createProposal",
         data: formData,
       });
 
